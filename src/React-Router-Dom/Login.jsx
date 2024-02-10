@@ -43,8 +43,10 @@ const Login = () => {
           value={userLogin.name}
           name="name"
           onChange={handleChanges}
-        />{" "}
-        <label htmlFor="age">Email</label> <br />
+        />
+        <br />
+        <br />
+        <label htmlFor="age">Email</label>
         <br />
         <input
           type="email"
@@ -53,6 +55,7 @@ const Login = () => {
           name="email"
           onChange={handleChanges}
         />{" "}
+        <br />
         <br />
         <label htmlFor="age">Age</label> <br />
         <input

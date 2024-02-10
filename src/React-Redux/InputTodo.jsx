@@ -1,58 +1,52 @@
 import { useState } from "react";
+import { addTodo } from "../React-Redux/todo/TodoSlice";
 import { useDispatch } from "react-redux";
-import { addTodo } from "./futures/todo/TodoSlice";
 
 const Post = () => {
-  const [input, setInput] = useState({
+  const [Input, setInput] = useState({
     name: "",
     email: "",
     age: "",
   });
-  const dispatch = useDispatch();
+
+  const disPatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInput((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+
+    setInput({ ...Input, [name]: value });
   };
 
-  const handleTodoHandler = (e) => {
+  const handleForm = (e) => {
     e.preventDefault();
-    dispatch(addTodo(input));
-    setInput({
-      name: "",
-      email: "",
-      age: "",
-    });
+    disPatch(addTodo(Input));
   };
 
   return (
     <div>
       <h2>List Of Todo</h2>
-      <form action="" onSubmit={handleTodoHandler}>
+      <form action="" onSubmit={handleForm}>
         <input
           type="text"
-          value={input.name}
-          onChange={handleChange}
           name="name"
+          value={Input.name}
+          onChange={handleChange}
           placeholder="Your Name"
         />{" "}
         <br />
         <input
           type="email"
-          value={input.email}
-          onChange={handleChange}
           name="email"
+          value={Input.email}
+          onChange={handleChange}
           placeholder="Your email"
         />{" "}
         <br />
         <input
           type="number"
-          value={input.age}
-          onChange={handleChange}
           name="age"
+          value={Input.age}
+          onChange={handleChange}
           placeholder="Your age"
         />{" "}
         <br />
