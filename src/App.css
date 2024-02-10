@@ -34,41 +34,4 @@ a.navList.active {
     display: none;
   }
 
-  .mobile-view {
-    display: flex;
-  }
-  .navLink{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
-  h1{
-    position: relative;
-    top: 0rem;
-
-}
-}
-
-
-/* Home Page */
-
-.api-div{
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0rem 2rem 2rem 0rem;
-  justify-content: space-between;
-}
-
-.fake-api{
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-}
-
-.search{
-  width: 300px;
-  padding: 6px;
 }

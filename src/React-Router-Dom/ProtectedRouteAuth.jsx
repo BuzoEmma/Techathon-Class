@@ -6,6 +6,8 @@ const userContext = createContext();
 const ProtectedRouteAuth = ({ children }) => {
   const [User, setUser] = useState(null);
 
+  console.log(User);
+
   const login = (identity) => {
     setUser(identity);
   };
@@ -26,4 +28,3 @@ export default ProtectedRouteAuth;
 export const AuthUser = () => {
   return useContext(userContext);
 };
-

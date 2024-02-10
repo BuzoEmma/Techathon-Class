@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 import { AuthUser } from "./ProtectedRouteAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
-  const [userLogin, setuserLogin] = useState({
+  const [userLogin, setUserLogin] = useState({
     name: "",
     email: "",
     age: "",
   });
 
-  console.log(userLogin);
-
   const { login } = AuthUser();
-
   const navigate = useNavigate();
   const location = useLocation();
-
   const pathDirect = location.state?.path || "/";
 
   const handleChanges = (e) => {
     const { name, value } = e.target;
+    setUserLogin({ ...userLogin, [name]: value });
+  };
 
-    setuserLogin({ ...userLogin, [name]: value });
+  const handleGoogleLogin = (credentialResponse) => {
+    const credentialIdentity = jwtDecode(credentialResponse.credential);
+    login(credentialIdentity);
+    navigate(pathDirect, { replace: true });
+    console.log(credentialResponse);
+  };
+
+  const handleGoogleError = () => {
+    console.log("Google login failed");
   };
 
   const handleSubmit = (e) => {
@@ -32,14 +40,13 @@ const Login = () => {
 
   return (
     <div>
-      {" "}
       <br />
       <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="">User Name</label> <br />
         <input
           type="text"
-          placeholder="type your name"
+          placeholder="Type your name"
           value={userLogin.name}
           name="name"
           onChange={handleChanges}
@@ -50,7 +57,7 @@ const Login = () => {
         <br />
         <input
           type="email"
-          placeholder="type your email"
+          placeholder="Type your email"
           value={userLogin.email}
           name="email"
           onChange={handleChanges}
@@ -60,7 +67,7 @@ const Login = () => {
         <label htmlFor="age">Age</label> <br />
         <input
           type="number"
-          placeholder="type your age"
+          placeholder="Type your age"
           value={userLogin.age}
           name="age"
           onChange={handleChanges}
@@ -68,6 +75,8 @@ const Login = () => {
         <br />
         <button type="submit">Submit</button>
       </form>
+      {/* Google OAuth2  */}
+      <GoogleLogin onSuccess={handleGoogleLogin} onError={handleGoogleError} />
     </div>
   );
 };

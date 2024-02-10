@@ -4,15 +4,14 @@ import { AuthUser } from "./ProtectedRouteAuth";
 const Profile = () => {
   const { User, logout } = AuthUser();
 
-
   return (
     <main>
       <div>
-        You welcome Mr {User.name} <br />
-        You welcome Mr {User?.email} <br />
-        You welcome Mr {User?.age} <br />
+        Name: {User.name} <br />
+        Email: {User?.email} <br />
+        Age: {User?.age} <br />
       </div>
-      <button onClick={()=>logout()}>Logout</button>
+      <button onClick={() => logout()}>Logout</button>
     </main>
   );
 };
