@@ -5,20 +5,25 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
-  const [userLogin, setUserLogin] = useState({
+  const [userLogin, setuserLogin] = useState({
     name: "",
     email: "",
     age: "",
   });
 
+  console.log(userLogin);
+
   const { login } = AuthUser();
+
   const navigate = useNavigate();
   const location = useLocation();
+
   const pathDirect = location.state?.path || "/";
 
   const handleChanges = (e) => {
     const { name, value } = e.target;
-    setUserLogin({ ...userLogin, [name]: value });
+
+    setuserLogin({ ...userLogin, [name]: value });
   };
 
   const handleGoogleLogin = (credentialResponse) => {
@@ -40,13 +45,14 @@ const Login = () => {
 
   return (
     <div>
+   <h1>Login</h1>
       <br />
       <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="">User Name</label> <br />
         <input
           type="text"
-          placeholder="Type your name"
+          placeholder="type your name"
           value={userLogin.name}
           name="name"
           onChange={handleChanges}
@@ -57,24 +63,26 @@ const Login = () => {
         <br />
         <input
           type="email"
-          placeholder="Type your email"
+          placeholder="type your email"
           value={userLogin.email}
           name="email"
           onChange={handleChanges}
-        />{" "}
+        />
         <br />
         <br />
         <label htmlFor="age">Age</label> <br />
         <input
           type="number"
-          placeholder="Type your age"
+          placeholder="type your age"
           value={userLogin.age}
           name="age"
           onChange={handleChanges}
         />{" "}
         <br />
         <button type="submit">Submit</button>
-      </form>
+      </form>{" "}
+      <br />
+      <br />
       {/* Google OAuth2  */}
       <GoogleLogin onSuccess={handleGoogleLogin} onError={handleGoogleError} />
     </div>
