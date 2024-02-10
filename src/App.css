@@ -69,3 +69,22 @@ a.navList.active {
     display: flex;
   }
 }
+
+.search {
+  width: 300px;
+  padding: 5px;
+}
+
+.api-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.fake-api {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}

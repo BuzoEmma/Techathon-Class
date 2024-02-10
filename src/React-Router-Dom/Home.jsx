@@ -11,7 +11,7 @@ const fetchData = async () => {
 };
 
 const Home = () => {
-  const [User, setUser] = useState({});
+  // const [User, setUser] = useState({});
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredPosts, setFilteredPosts] = useState([]);
