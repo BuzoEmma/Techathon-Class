@@ -28,6 +28,8 @@ import UserFetcherDetails, {
 import UserFetcherError from "./React-Router-Dom/USerFetcherError.jsx";
 import ProtectedRouteAuth from "./React-Router-Dom/ProtectedRouteAuth.jsx";
 import RequiredAuth from "./React-Router-Dom/RequiredAuth.jsx";
+import { Provider } from "react-redux";
+import PostStore from "./React-Redux/PostStore.jsx";
 
 const App = () => {
   const Root = createBrowserRouter(
@@ -69,9 +71,11 @@ const App = () => {
 
   return (
     <>
-      <ProtectedRouteAuth>
-        <RouterProvider router={Root} />
-      </ProtectedRouteAuth>
+      <Provider store={PostStore}>
+        <ProtectedRouteAuth>
+          <RouterProvider router={Root} />
+        </ProtectedRouteAuth>
+      </Provider>
     </>
   );
 };
